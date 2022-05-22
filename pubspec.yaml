@@ -1,4 +1,4 @@
-name: undo_manager
+name: history_manager
 description: A new Flutter package project.
 version: 0.0.1
 homepage:
@@ -13,7 +13,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  pedantic: 1.11.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
