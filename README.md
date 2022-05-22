@@ -2,6 +2,8 @@
 
 An action manager for saving executed changes that allows redoing and undoing of changes occured.
 
+![history_actions](https://user-images.githubusercontent.com/62531088/169703219-eca4c6b6-83d8-413f-9d89-a16817beb9aa.gif)
+
 ## Usage
 
 Initializing the controller.
