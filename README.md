@@ -1,16 +1,17 @@
 # history_manager
 
-A manager for executed changes that allows redoing and undoing of changes occured.
+An action manager for saving executed changes that allows redoing and undoing of changes occured.
 
 ## Usage
 
+Initializing the controller.
 ```dart
 import 'package:history_manager/history_manager.dart';
 
 HistoryController controller = new HistoryController();
 ```
 
-Create a simple model by extending to `ExecutedChange` wherein it accepts different types.
+Creating a simple model by extending to `ExecutedChange` wherein it accepts different types.
 
 ```dart
 class IncrementChange extends ExecutedChange<int> {
