@@ -52,7 +52,7 @@ void main() {
         ),
       ];
 
-      undoController.addGroup<String>(changes);
+      undoController.addList<String>(changes);
 
       expect(undoController.executedChanges.length, 2);
       expect(undoController.canUndo, true);

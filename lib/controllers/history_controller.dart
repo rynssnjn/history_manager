@@ -88,7 +88,7 @@ class HistoryController extends ChangeNotifier {
   /// # Parameter:
   ///   - changes : The list of [ExecutedChange]s done from the session of this stack. To be added at the
   ///              last position of `_executedChanges` stack.
-  void addGroup<T>(List<ExecutedChange<T>> changes) {
+  void addList<T>(List<ExecutedChange<T>> changes) {
     changes.forEach((change) => change.execute());
     _executedChanges.addLast(changes);
     _redos.clear();
