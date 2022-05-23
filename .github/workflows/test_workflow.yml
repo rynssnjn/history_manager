@@ -11,11 +11,14 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2
-      with:
-        channel: 'stable'
-        architecture: x64
-      - run: flutter pub get
-      name: Run tests
-      run: flutter test --coverage
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: subosito
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          architecture: x64
+      - name: pub get
+        run: flutter pub get
+      - name: Run tests
+        run: flutter test --coverage
