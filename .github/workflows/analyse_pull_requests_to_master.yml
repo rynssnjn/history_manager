@@ -15,6 +15,12 @@ jobs:
     runs-on: macos-latest
 
     steps:
+      - name: Set up ruby
+        uses: actions/setup-ruby@v1
+
+      - name: Setup Danger
+        run: gem install bundler && bundle install
+
       - name: checkout
         uses: actions/checkout@v2
 
@@ -23,15 +29,6 @@ jobs:
 
       - name: Analyze flutter
         run: cd lib && flutter analyze > flutter_analyze_report.txt
-
-      - name: Set up ruby
-        if: ${{ failure() }}
-        run: cd ..
-        uses: actions/setup-ruby@v1
-
-      - name: Setup Danger
-        if: ${{ failure() }}
-        run: gem install bundler && bundle install
 
       - name: Execute Danger
         if: ${{ failure() }}
