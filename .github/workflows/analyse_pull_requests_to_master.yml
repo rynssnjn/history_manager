@@ -33,8 +33,6 @@ jobs:
       - name: Set up ruby
         if: ${{ failure() }}
         uses: actions/setup-ruby@v1
-        with:
-            ruby-version:"2.6"
 
       - name: Setup Danger
         if: ${{ failure() }}
