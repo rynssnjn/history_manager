@@ -25,7 +25,7 @@ jobs:
         run: bundler init
 
       - name: Setup Danger
-        run: gem install bundler && bundle install && gem install danger
+        run: gem install bundler && gem install danger && bundle install
 
       - name: Export path
         run: export GEM_HOME=$HOME/.gem && export PATH=$GEM_HOME/bin:$PATH
