@@ -34,7 +34,7 @@ jobs:
             architecture: x64
 
       - name: Analyze flutter
-        run: cd lib && flutter analyze > flutter_analyze_report.txt
+        run: flutter analyze > flutter_analyze_report.txt
 
       - name: Execute Danger
         if: ${{ failure() }}
