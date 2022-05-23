@@ -22,10 +22,11 @@ jobs:
         uses: subosito/flutter-action@v2
 
       - name: Analyze flutter
-        run: cd lib && flutter analyze > flutter_analyze_report.txt && cd ..
+        run: cd lib && flutter analyze > flutter_analyze_report.txt
 
       - name: Set up ruby
         if: ${{ failure() }}
+        run: cd ..
         uses: actions/setup-ruby@v1
 
       - name: Setup Danger
