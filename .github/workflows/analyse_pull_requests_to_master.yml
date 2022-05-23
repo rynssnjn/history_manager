@@ -10,11 +10,12 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  lint:
+    name: flutter analyze
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Build and Analyse Flutter
-        run: git clone -b stable https://github.com/flutter/flutter.git && export PATH="$PATH:`pwd`/flutter/bin" && flutter upgrade && flutter pub get && flutter build web
+        run: git clone -b stable https://github.com/flutter/flutter.git && export PATH="$PATH:`pwd`/flutter/bin" && flutter pub get && cd lib && flutter analyze
