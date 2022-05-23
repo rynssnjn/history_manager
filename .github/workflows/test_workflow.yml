@@ -22,5 +22,7 @@ jobs:
         run: flutter pub get
       - name: Run unit tests
         run: flutter test --coverage
+      - name: Activate test coverage console
+        run: flutter pub global activate test_cov_console
       - name: Show code coverage
         run: flutter pub global run test_cov_console 
