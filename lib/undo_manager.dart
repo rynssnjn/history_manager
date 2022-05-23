@@ -1,7 +1,8 @@
 library undo_manager;
 
-String test = 'asda';
+
 
 void main() {
+  String test = 'asda';
   print(test);
 }
