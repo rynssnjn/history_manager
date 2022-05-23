@@ -21,11 +21,8 @@ jobs:
       - name: Install flutter
         uses: subosito/flutter-action@v2
 
-      - name: Change directory to lib
-        run: cd lib
-
       - name: Analyze flutter
-        run: flutter analyze > flutter_analyze_report.txt
+        run: cd lib && flutter analyze > flutter_analyze_report.txt && cd ..
 
       - name: Set up ruby
         if: ${{ failure() }}
@@ -33,7 +30,7 @@ jobs:
 
       - name: Setup Danger
         if: ${{ failure() }}
-        run: cd .. && gem install bundler && bundle install
+        run: gem install bundler && bundle install
 
       - name: Execute Danger
         if: ${{ failure() }}
