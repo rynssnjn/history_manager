@@ -12,7 +12,7 @@ on:
 jobs:
   lint:
     name: flutter analyze
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - name: checkout
