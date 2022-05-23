@@ -13,8 +13,8 @@ jobs:
     steps:
       - name: Check out actions
         uses: actions/checkout@v3
-      - name: Check out flutter actions
-        uses: subosito/flutter-action@v2
+      - name: Install flutter
+        run: git clone -b stable https://github.com/flutter/flutter.git && export PATH="$PATH:`pwd`/flutter/bin"
         with:
           channel: 'stable'
           architecture: x64
