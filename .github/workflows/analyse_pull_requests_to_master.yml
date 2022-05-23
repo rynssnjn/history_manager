@@ -33,9 +33,7 @@ jobs:
 
       - name: Setup Danger
         if: ${{ failure() }}
-        run: |
-            gem install bundler
-            bundle install
+        run: gem install bundler && bundle install
 
       - name: Execute Danger
         if: ${{ failure() }}
