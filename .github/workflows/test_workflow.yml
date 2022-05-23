@@ -11,14 +11,16 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: checkout
+      - name: Check out actions
         uses: actions/checkout@v3
-      - name: subosito
+      - name: Check out flutter actions
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
           architecture: x64
-      - name: pub get
+      - name: Install packages
         run: flutter pub get
-      - name: Run tests
+      - name: Run unit tests
         run: flutter test --coverage
+      - name: Show code coverage
+        run: flutter pub global run test_cov_console 
