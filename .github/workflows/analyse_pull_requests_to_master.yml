@@ -10,34 +10,24 @@ on:
     branches: [ master ]
 
 jobs:
-  lint:
-    name: flutter analyze
-    runs-on: macos-latest
+    lint_checks:
+        name: Check Lints
+        runs-on: macos-latest
 
-    steps:
-      - name: Set up ruby
-        uses: actions/setup-ruby@v1
+        steps:
+            - name: checkout
+              uses: actions/checkout@master
 
-      - name: checkout
-        uses: actions/checkout@v2
+            - name: Install flutter
+              uses: subosito/flutter-action@v2
+              with:
+                channel: stable
+                architecture: x64
 
-      - name: haha
-        run: bundler init
+            - name: Analyze flutter
+              run: flutter analyze > flutter_analyze_report.txt
 
-      - name: Setup Danger
-        run: gem install bundler && gem install danger && bundle install
-
-      - name: Export path
-        run: export GEM_HOME=$HOME/.gem && export PATH=$GEM_HOME/bin:$PATH
-
-      - name: Install flutter
-        uses: subosito/flutter-action@v2
-        with:
-            channel: stable
-            architecture: x64
-
-      - name: Analyze flutter
-        run: flutter analyze > flutter_analyze_report.txt
-
-      - name: Execute Danger
-        run: bundle config set --local path 'vendor/bundle && bundle exec danger --dangerfile=Dangerfile --danger_id=danger-pr
+            - name: comment on pr
+              uses: aquasecurity/tfsec-pr-commenter-action@v1.2.0
+              with:
+                github_token: ${{ github.token }}
