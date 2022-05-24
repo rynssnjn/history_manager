@@ -21,7 +21,8 @@ jobs:
       - name: Set up ruby
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: '2.6'
+          ruby-version: '2.7'
+          bundler-cache: true
 
       - name: Initialize bundler
         run: bundler init
@@ -33,10 +34,8 @@ jobs:
         run: |
           gem install bundler
           bundle config path vendor/bundle
+          gem install danger
           bundle install --jobs 4 --retry 3
-      
-      - name: Danger install
-        run: bundle exec danger init
 
       - name: Install flutter
         uses: subosito/flutter-action@v2
