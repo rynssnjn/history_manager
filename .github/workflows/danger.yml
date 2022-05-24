@@ -30,6 +30,9 @@ jobs:
       # - name: Setup Danger
       #   run: gem install bundler && gem install danger && bundle install
 
+      - name: Install Danger
+        run: gem install danger
+
       - name: Bundle install
         run: |
           gem install bundler
