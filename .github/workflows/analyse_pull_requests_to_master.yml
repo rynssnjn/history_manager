@@ -32,9 +32,3 @@ jobs:
         with:
           channel: stable
           architecture: x64
-
-      - name: Analyze flutter
-        run: flutter analyze > flutter_analyze_report.txt
-
-      - name: Execute Danger
-        run: bundle exec danger --verbose
