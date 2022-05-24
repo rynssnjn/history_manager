@@ -37,5 +37,4 @@ jobs:
         run: flutter analyze > flutter_analyze_report.txt
 
       - name: Execute Danger
-        if: ${{ failure() }}
         run: bundle exec danger --verbose
