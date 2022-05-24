@@ -30,4 +30,10 @@ jobs:
         run: flutter pub global activate test_cov_console
         
       - name: Show code coverage
-        run: flutter pub global run test_cov_console 
+        run: flutter pub global run test_cov_console > flutter_analyze_report.txt
+
+      - name: Comment PR
+        if: ${{ failure() }}
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          path: flutter_analyze_report.txt
