@@ -36,3 +36,5 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           path: code_coverage_report.txt
+        with:
+          path: flutter_analyze_report.txt
