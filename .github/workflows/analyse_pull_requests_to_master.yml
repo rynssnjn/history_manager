@@ -3,32 +3,35 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Analyse_Pull_Requests_To_Master
+name: Lint Checks
 
 on:
   pull_request:
     branches: [ master ]
 
 jobs:
-  Analyse_Pull_Request:
+  tests:
     name: flutter analyze
     runs-on: macos-latest
 
     steps:
-      - name: checkout
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Install flutter
         uses: subosito/flutter-action@v2
         with:
             channel: stable
             architecture: x64
+      
+      - name: Install packages
+        run: flutter pub get
 
       - name: Analyze flutter
         run: flutter analyze > flutter_analyze_report.txt
 
-      - name: Comment on pull request
+      - name: Comment PR
         if: ${{ failure() }}
         uses: marocchino/sticky-pull-request-comment@v2
         with:
-            path: flutter_analyze_report.txt
+          path: flutter_analyze_report.txt
