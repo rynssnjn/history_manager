@@ -53,6 +53,5 @@ jobs:
         if: ${{ failure() }}
         uses: thollander/actions-comment-pull-request@v1
         with:
-          message: |
-            Hello world ! :wave:
+          path: flutter_analyze_report.txt
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
