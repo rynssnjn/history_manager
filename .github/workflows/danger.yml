@@ -23,14 +23,6 @@ jobs:
         with:
           ruby-version: '2.7'
           bundler-cache: true
-      
-      - name: Cache Gemfile
-        uses: actions/cache@v1
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('Gemfile') }} # change your gemfile path
-          restore-keys: |
-            ${{ runner.os }}-gems-
 
       # - name: Initialize bundler
       #   run: bundler init
