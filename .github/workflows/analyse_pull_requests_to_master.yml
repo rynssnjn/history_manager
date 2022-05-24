@@ -30,8 +30,8 @@ jobs:
       - name: Install flutter
         uses: subosito/flutter-action@v2
         with:
-            channel: stable
-            architecture: x64
+          channel: stable
+          architecture: x64
 
       - name: Analyze flutter
         run: flutter analyze > flutter_analyze_report.txt
@@ -39,5 +39,5 @@ jobs:
       - name: Execute Danger
         if: ${{ failure() }}
         env:
-            DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+          DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN}}
         run: bundle exec danger --verbose
