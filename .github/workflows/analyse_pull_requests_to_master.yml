@@ -3,7 +3,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Analyse Pull Requests To Master
+name: Analyse_Pull_Requests_To_Master
 
 on:
   pull_request:
