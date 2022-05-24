@@ -1,39 +1,51 @@
-name: Danger
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Analyse Pull Requests To Master
 
 on:
   pull_request:
-    types: [synchronize, opened, reopened, labeled, unlabeled, edited]
-
-env:
-  DEVELOPER_DIR: /Applications/Xcode_13.2.1.app/Contents/Developer
+    branches: [ master ]
 
 jobs:
-  main:
-    name: Review, Lint, Verify
-    runs-on: macOS-latest
+  Analyse Pull Request:
+    name: flutter analyze
+    runs-on: macos-latest
+
     steps:
-      - name: git checkout
+      - name: Set up ruby
+        uses: actions/setup-ruby@v1
+
+      - name: checkout
         uses: actions/checkout@v2
 
-      - name: ruby versions
-        run: |
-          ruby --version
-          gem --version
-          bundler --version
-
-      - name: ruby setup
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7
-          bundler-cache: true
-      
       - name: haha
         run: bundler init
 
       - name: Setup Danger
         run: gem install bundler && gem install danger && bundle install
 
-      - name: danger
+      - name: Export path
+        run: export GEM_HOME=$HOME/.gem && export PATH=$GEM_HOME/bin:$PATH
+
+      - name: Install flutter
+        uses: subosito/flutter-action@v2
+        with:
+            channel: stable
+            architecture: x64
+
+      - name: Analyze flutter
+        run: flutter analyze > flutter_analyze_report.txt
+
+      - name: Execute Danger
+        if: ${{ failure() }}
+        uses: MeilCli/danger-action@v5
+        with:
+            plugins_file: "Gemfile"
+            install_path: "vendor/bundle"
+            danger_file: "Dangerfile"
+            danger_id: "danger-pr"
         env:
-          DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: bundle exec danger --verbose
+            DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
