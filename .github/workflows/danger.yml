@@ -27,7 +27,8 @@ jobs:
           ruby-version: 2.7
           bundler-cache: true
 
-      # additional steps here, if needed
+      - name: Setup Danger
+        run: gem install bundler && gem install danger && bundle install
 
       - name: danger
         env:
