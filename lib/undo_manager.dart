@@ -5,4 +5,6 @@ void main() {
   print(test);
 
   String test2 = '123';
+
+  String test3 = 123;
 }
