@@ -1,2 +1,1 @@
 library undo_manager;
-
