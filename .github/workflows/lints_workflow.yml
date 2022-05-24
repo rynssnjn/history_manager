@@ -10,7 +10,7 @@ on:
     branches: [ master ]
 
 jobs:
-  tests:
+  analyze_lints:
     name: flutter analyze
     runs-on: macos-latest
 
