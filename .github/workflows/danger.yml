@@ -50,6 +50,7 @@ jobs:
       #   env:
       #     DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Comment PR
+        if: ${{ failure() }}
         uses: thollander/actions-comment-pull-request@v1
         with:
           message: |
