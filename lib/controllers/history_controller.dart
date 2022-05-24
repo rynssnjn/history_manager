@@ -93,6 +93,7 @@ class HistoryController extends ChangeNotifier {
     changes.forEach((change) => change.execute());
     _executedChanges.addLast(changes);
     _redos.clear();
+    String test2 = 'sdf';
     notifyListeners();
   }
 
