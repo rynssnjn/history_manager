@@ -15,20 +15,8 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Set up ruby
-        uses: actions/setup-ruby@v1
-
       - name: checkout
         uses: actions/checkout@v2
-
-      - name: haha
-        run: bundler init
-
-      - name: Setup Danger
-        run: gem install bundler && gem install danger && bundle install
-
-      - name: Export path
-        run: export GEM_HOME=$HOME/.gem && export PATH=$GEM_HOME/bin:$PATH
 
       - name: Install flutter
         uses: subosito/flutter-action@v2
@@ -39,13 +27,8 @@ jobs:
       - name: Analyze flutter
         run: flutter analyze > flutter_analyze_report.txt
 
-      - name: Execute Danger
+      - name: Comment on pull request
         if: ${{ failure() }}
-        uses: MeilCli/danger-action@v5
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
-            plugins_file: "Gemfile"
-            install_path: "vendor/bundle"
-            danger_file: "Dangerfile"
-            danger_id: "danger-pr"
-        env:
-            DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+            path: flutter_analyze_report.txt
