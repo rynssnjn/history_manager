@@ -24,12 +24,6 @@ jobs:
           ruby-version: '2.7'
           bundler-cache: true
 
-      # - name: Initialize bundler
-      #   run: bundler init
-
-      # - name: Setup Danger
-      #   run: gem install bundler && gem install danger && bundle install
-
       - name: Install Bundler
         run: gem install bundler
 
@@ -37,14 +31,6 @@ jobs:
         run: |
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
-        
-      - name: Caching
-        uses: actions/cache@v1
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('.github/Gemfile') }} # change your gemfile path
-          restore-keys: |
-            ${{ runner.os }}-gems-
 
       - name: Install flutter
         uses: subosito/flutter-action@v2
@@ -60,11 +46,12 @@ jobs:
 
       - name: Execute Danger
         if: ${{ failure() }}
-        uses: MeilCli/danger-action@v5
-        with:
-          plugins_file: '.github/Gemfile'
-          install_path: 'vendor/bundle'
-          danger_file: '.github/Dangerfile'
-          danger_id: 'danger-pr'
+        # uses: MeilCli/danger-action@v5
+        # with:
+        #   plugins_file: 'Gemfile'
+        #   install_path: 'vendor/bundle'
+        #   danger_file: 'Dangerfile'
+        #   danger_id: 'danger-pr'
+        run: bundle exec danger --verbose
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
