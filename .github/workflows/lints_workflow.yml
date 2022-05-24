@@ -21,8 +21,8 @@ jobs:
       - name: Install flutter
         uses: subosito/flutter-action@v2
         with:
-            channel: stable
-            architecture: x64
+          channel: stable
+          architecture: x64
       
       - name: Install packages
         run: flutter pub get
