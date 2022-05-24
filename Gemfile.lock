@@ -24,6 +24,11 @@ GEM
       no_proxy_fix
       octokit (~> 4.7)
       terminal-table (>= 1, < 4)
+    danger-flutter_lint (1.0.1)
+      danger-plugin-api (~> 1.0)
+      flutter_analyze_parser (~> 0.1.2)
+    danger-plugin-api (1.0.0)
+      danger (> 2.0)
     faraday (1.10.0)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
@@ -49,6 +54,7 @@ GEM
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
     faraday-retry (1.0.3)
+    flutter_analyze_parser (0.1.2)
     git (1.11.0)
       rchardet (~> 1.8)
     kramdown (2.4.0)
@@ -77,7 +83,7 @@ PLATFORMS
   universal-darwin-21
 
 DEPENDENCIES
-  danger
+  danger-flutter_lint
 
 BUNDLED WITH
    2.3.14
