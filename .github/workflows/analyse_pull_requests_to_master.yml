@@ -10,7 +10,7 @@ on:
     branches: [ master ]
 
 jobs:
-  Analyse Pull Request:
+  Analyse_Pull_Request:
     name: flutter analyze
     runs-on: macos-latest
 
