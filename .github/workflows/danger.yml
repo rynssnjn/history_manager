@@ -51,9 +51,6 @@ jobs:
       #     DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Comment PR
         if: ${{ failure() }}
-        uses: machine-learning-apps/pr-comment@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
           path: flutter_analyze_report.txt
-       
