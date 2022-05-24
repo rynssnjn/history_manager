@@ -1,0 +1,39 @@
+name: Run unit tests
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  run_unit_tests:
+    runs-on: macos-latest
+
+    steps:
+      - name: Check out actions
+        uses: actions/checkout@v3
+
+      - name: Install flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          architecture: x64
+
+      - name: Install packages
+        run: flutter pub get
+
+      - name: Run unit tests
+        run: flutter test --coverage
+
+      - name: Activate test coverage console
+        run: flutter pub global activate test_cov_console
+        
+      - name: Show code coverage
+        run: flutter pub global run test_cov_console > code_coverage_report.txt
+
+      - name: Comment PR
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          path: code_coverage_report.txt
+          append: true
