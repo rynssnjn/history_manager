@@ -37,6 +37,14 @@ jobs:
         run: |
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
+        
+      - name: Caching
+        uses: actions/cache@v1
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('.github/Gemfile') }} # change your gemfile path
+          restore-keys: |
+            ${{ runner.os }}-gems-
 
       - name: Install flutter
         uses: subosito/flutter-action@v2
@@ -52,6 +60,11 @@ jobs:
 
       - name: Execute Danger
         if: ${{ failure() }}
-        run: bundle exec danger --verbose
+        uses: MeilCli/danger-action@v5
+        with:
+          plugins_file: 'Gemfile'
+          install_path: 'vendor/bundle'
+          danger_file: 'Dangerfile'
+          danger_id: 'danger-pr'
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
