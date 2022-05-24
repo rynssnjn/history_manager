@@ -51,4 +51,6 @@ jobs:
         if: ${{ failure() }}
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: bundle exec danger --verbose
+        run: |
+          bundle exec danger init
+          bundle exec danger --verbose
