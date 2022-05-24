@@ -46,11 +46,6 @@ jobs:
 
       - name: Execute Danger
         if: ${{ failure() }}
-        uses: MeilCli/danger-action@v5
-        with:
-          plugins_file: 'Gemfile'
-          install_path: 'vendor/bundle'
-          danger_file: 'Dangerfile'
-          danger_id: 'danger-pr'
+        run: bundle exec danger --verbose
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
