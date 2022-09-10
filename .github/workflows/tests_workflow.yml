@@ -1,7 +1,7 @@
 name: Run unit tests
 
 on:
-  pull_request:
+  pull_request_target:
     branches: 
       - '**'
 
@@ -33,10 +33,9 @@ jobs:
 
       - name: Comment PR
         if: ${{ always() }}
-        uses: mshick/add-pr-comment@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
-          message: |
-            code_coverage_report.txt
-          allow-repeats: false
+          header: "unit_test"
+          hide_and_recreate: true
+          hide_classify: "OUTDATED"
+          path: code_coverage_report.txt
