@@ -12,7 +12,7 @@ dependencies:
 
 dependency_overrides:
     history_manager:
-        git: https://github.com/rynssnjn/history_manager.git
+        git: https://github.com/rynssnjn/history_manager.gitss
 ```
 
 ## Usage
