@@ -2,7 +2,8 @@ name: Run unit tests
 
 on:
   pull_request:
-    branches: [ * ]
+    branches: 
+      - '**'
 
 jobs:
   run_unit_tests:
