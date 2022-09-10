@@ -7,12 +7,13 @@ name: Lint Checks
 
 on:
   pull_request:
-    branches: [ master ]
+    branches: 
+      - '**'
 
 jobs:
   tests:
     name: flutter analyze
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -22,16 +23,19 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
+          cache: true
           architecture: x64
       
-      - name: Install packages
-        run: flutter pub get
-
-      - name: Analyze flutter
-        run: flutter analyze > flutter_analyze_report.txt
+      - name: Install packages and Analyze
+        run: |
+          flutter pub get
+          flutter analyze > flutter_analyze_report.txt
 
       - name: Comment PR
-        if: ${{ failure() }}
+        if: ${{ failure() }} || ${{ success() }}
         uses: marocchino/sticky-pull-request-comment@v2
         with:
+          header: "lints"
+          hide_and_recreate: true
+          hide_classify: "OUTDATED"
           path: flutter_analyze_report.txt
