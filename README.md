@@ -2,6 +2,8 @@
 
 An action manager for saving executed changes that allows redoing and undoing of changes occured.
 
+![169703219-eca4c6b6-83d8-413f-9d89-a16817beb9aa](https://user-images.githubusercontent.com/62531088/189489580-a53c308b-a0e3-4f95-be3f-dedddbc11fe6.gif)
+
 ## Installation
 
 ```yaml
