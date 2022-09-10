@@ -9,7 +9,7 @@ dependencies:
     history_manager: 0.1.0
 
 dependency_overrides:
-    event_calendar:
+    history_manager:
         git: https://github.com/rynssnjn/history_manager.git
 ```
 
