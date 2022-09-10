@@ -29,7 +29,7 @@ jobs:
         run: flutter pub global activate test_cov_console
         
       - name: Show code coverage
-        run: flutter pub global run test_cov_console > code_coverage_report.txt'
+        run: flutter pub global run test_cov_console > code_coverage_report.txt
         
       - name: Read code_coverage_report
         id: code_coverage_report
