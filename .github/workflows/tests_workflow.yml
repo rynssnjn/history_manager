@@ -38,4 +38,4 @@ jobs:
           header: "unit_test"
           hide_and_recreate: true
           hide_classify: "OUTDATED"
-          path: flutter_analyze_report.txt
+          path: code_coverage_report.txt
