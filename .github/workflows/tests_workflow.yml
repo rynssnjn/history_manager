@@ -30,9 +30,27 @@ jobs:
         
       - name: Show code coverage
         run: flutter pub global run test_cov_console > code_coverage_report.txt
-
+    
+      - name: Read code_coverage_report
+        uses: allthatjazzleo/actions-pull-request-add-comment@master
+        if: >-
+          github.event_name == 'pull_request' || (github.event_name == 'issue_comment' 
+          && github.event.comment.body == '/hi' && github.actor == 'allthatjazzleo' )
+        with:
+          message: 'yoyo🤙🏻'
+          # message: "echo ${{ github.event.comment.body }}" dynamic message based on comment
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Read code_coverage_report
+        id: code_coverage_report
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./code_coverage_report.txt
+          
+      - name: Echo code_coverage_report
+        run: echo "${{ steps.code_coverage_report.outputs.content }}"
+        
       - name: Comment PR
-        if: ${{ always() }}
+        if: ${{ always() && github.event.pull_request.head.repo.full_name == github.repository }}
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: "unit_test"
