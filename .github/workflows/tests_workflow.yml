@@ -31,17 +31,12 @@ jobs:
       - name: Show code coverage
         run: flutter pub global run test_cov_console > code_coverage_report.txt
         
-      - name: Create comment
-        uses: peter-evans/create-or-update-comment@v2
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v1
         with:
-          issue-number: 1
-          body: |
-            This is a multi-line test comment
-            - With GitHub **Markdown** :sparkles:
-            - Created by [create-or-update-comment][1]
-
-            [1]: https://github.com/peter-evans/create-or-update-comment
-          reactions: '+1'
+          message: |
+            Hello world ! :wave:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #       - name: Read code_coverage_report
 #         id: code_coverage_report
 #         uses: juliangruber/read-file-action@v1
