@@ -2,6 +2,17 @@
 
 An action manager for saving executed changes that allows redoing and undoing of changes occured.
 
+## Installation
+
+```yaml
+dependencies:
+    history_manager: 0.1.0
+
+dependency_overrides:
+    event_calendar:
+        git: https://github.com/rynssnjn/history_manager.git
+```
+
 ## Usage
 
 Initializing the controller.
