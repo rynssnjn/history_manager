@@ -30,9 +30,18 @@ jobs:
         run: |
           flutter pub get
           flutter analyze > flutter_analyze_report.txt
+          
+      - name: Read flutter_analyze_report
+        id: flutter_analyze_report
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./flutter_analyze_report.txt
+          
+      - name: Echo flutter_analyze_report
+        run: echo "${{ steps.flutter_analyze_report.outputs.content }}"
 
       - name: Comment PR
-        if: ${{ failure() }} || ${{ success() }}
+        if: ${{ always() && github.event.pull_request.head.repo.full_name == github.repository }}
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: "lints"
