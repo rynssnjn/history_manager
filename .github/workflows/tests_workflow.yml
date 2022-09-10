@@ -32,10 +32,13 @@ jobs:
         run: flutter pub global run test_cov_console > code_coverage_report.txt
         
       - name: Comment PR
-        uses: thollander/actions-comment-pull-request@v1
+        uses: allthatjazzleo/actions-pull-request-add-comment@master
+        if: >-
+          github.event_name == 'pull_request' || (github.event_name == 'issue_comment' 
+          && github.event.comment.body == '/hi' && github.actor == 'allthatjazzleo' )
         with:
-          message: |
-            Hello world ! :wave:
+          message: 'yoyo🤙🏻'
+          # message: "echo ${{ github.event.comment.body }}" dynamic message based on comment
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #       - name: Read code_coverage_report
 #         id: code_coverage_report
